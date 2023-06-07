@@ -56,15 +56,12 @@ export const handler = async (
 
     errors: {
       usernameOrPasswordMissing: 'Both username and password are required',
-      usernameNotFound: 'Username ${username} not found',
-      // For security reasons you may want to make this the same as the
-      // usernameNotFound error so that a malicious user can't use the error
-      // to narrow down if it's the username or password that's incorrect
-      incorrectPassword: 'Incorrect password for ${username}',
+      usernameNotFound: 'Username and/or password incorrect',
+      incorrectPassword: 'Username and/or password incorrect',
     },
 
     // How long a user will remain logged in, in seconds
-    expires: 60 * 60 * 24 * 365 * 10,
+    expires: 60 * 60,
   }
 
   const resetPasswordOptions: DbAuthHandlerOptions['resetPassword'] = {
@@ -107,8 +104,10 @@ export const handler = async (
     //
     // If this returns anything else, it will be returned by the
     // `signUp()` function in the form of: `{ message: 'String here' }`.
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handler: ({ username, hashedPassword, salt, userAttributes }) => {
-      return db.user.create({
+      return db.employee.create({
         data: {
           email: username,
           hashedPassword: hashedPassword,
@@ -138,7 +137,7 @@ export const handler = async (
 
     // The name of the property you'd call on `db` to access your user table.
     // i.e. if your Prisma model is named `User` this value would be `user`, as in `db.user`
-    authModelAccessor: 'user',
+    authModelAccessor: 'employee',
 
     // A map of what dbAuth calls a field to what your database calls it.
     // `id` is whatever column you use to uniquely identify a user (probably

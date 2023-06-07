@@ -30,7 +30,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createEmployee(input: CreateEmployeeInput!): Employee! @requireAuth
+    createEmployee(input: CreateEmployeeInput!): Employee! @skipAuth
     updateEmployee(id: Int!, input: UpdateEmployeeInput!): Employee!
       @requireAuth
     deleteEmployee(id: Int!): Employee! @requireAuth

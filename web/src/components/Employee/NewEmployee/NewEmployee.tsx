@@ -1,10 +1,10 @@
+import type { CreateEmployeeInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import EmployeeForm from 'src/components/Employee/EmployeeForm'
-
-import type { CreateEmployeeInput } from 'types/graphql'
 
 const CREATE_EMPLOYEE_MUTATION = gql`
   mutation CreateEmployeeMutation($input: CreateEmployeeInput!) {

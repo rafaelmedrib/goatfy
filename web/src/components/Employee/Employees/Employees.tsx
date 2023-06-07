@@ -1,14 +1,14 @@
+import type {
+  DeleteEmployeeMutationVariables,
+  FindEmployees,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Employee/EmployeesCell'
 import { timeTag, truncate } from 'src/lib/formatters'
-
-import type {
-  DeleteEmployeeMutationVariables,
-  FindEmployees,
-} from 'types/graphql'
 
 const DELETE_EMPLOYEE_MUTATION = gql`
   mutation DeleteEmployeeMutation($id: Int!) {
